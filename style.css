@@ -1,0 +1,352 @@
+/* ==========================================
+   Bollywood's Golden 100 - style.css
+   Theme: old cinema hall (maroon curtain + gold)
+   Uses: Flexbox (header, nav, form) + Grid (page layout, form)
+   ========================================== */
+
+/* ---------- Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Rozha+One&display=swap');
+
+/* ---------- Colour variables (change colours in one place!) ---------- */
+:root {
+    --maroon: #5a0f1f;       /* theater curtain */
+    --dark-maroon: #2e0610;  /* page background */
+    --gold: #f5b82e;         /* marquee lights */
+    --saffron: #ff7a1a;      /* hover colour */
+    --paper: #fff6e3;        /* card background */
+    --ink: #2b1a1a;          /* text colour */
+}
+
+/* ---------- Reset (removes default browser spacing) ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------- Body: GRID layout for the whole page ---------- */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    color: var(--ink);
+    background-color: var(--dark-maroon);
+    /* small repeating dot pattern like a cinema curtain */
+    background-image: radial-gradient(rgba(245, 184, 46, 0.12) 1px, transparent 1px);
+    background-size: 22px 22px;
+    line-height: 1.7;
+
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto auto 1fr;   /* header, nav, content */
+}
+
+/* ---------- Header: FLEXBOX to centre everything ---------- */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px 30px;
+    background: linear-gradient(180deg, var(--maroon), var(--dark-maroon));
+    border-bottom: 6px double var(--gold);
+}
+
+header h1 {
+    font-family: 'Rozha One', Georgia, serif;
+    font-size: 3.2rem;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 2px;
+    /* glowing marquee effect */
+    text-shadow: 0 0 10px rgba(245, 184, 46, 0.6), 3px 3px 0 #000;
+}
+
+header p {
+    margin-top: 8px;
+    font-size: 1.1rem;
+    color: var(--paper);
+    font-style: italic;
+}
+
+/* ---------- Navigation bar: FLEXBOX ---------- */
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;          /* links go to next line on small screens */
+    gap: 10px;
+    padding: 14px 10px;
+    background-color: #000;
+    position: sticky;         /* stays at the top while scrolling */
+    top: 0;
+    z-index: 10;
+    border-bottom: 2px solid var(--gold);
+}
+
+nav a {
+    color: var(--paper);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 20px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--gold);
+    color: #000;
+    transform: translateY(-3px);
+}
+
+/* ---------- Main content card ---------- */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 35px 40px;
+    background-color: var(--paper);
+    border: 4px solid var(--gold);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- Headings and text ---------- */
+h2 {
+    font-family: 'Rozha One', Georgia, serif;
+    font-weight: 400;
+    font-size: 2rem;
+    color: var(--maroon);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid var(--gold);
+}
+
+h3 {
+    color: var(--maroon);
+    font-size: 1.2rem;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+p {
+    margin-bottom: 14px;
+}
+
+strong {
+    color: var(--saffron);
+}
+
+/* ---------- Table (Top 100 page) ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;         /* keeps rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+th {
+    background-color: var(--maroon);
+    color: var(--gold);
+    text-align: left;
+    padding: 14px;
+    font-size: 1rem;
+}
+
+td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #e5d3b0;
+}
+
+/* zebra stripes - every second row */
+tr:nth-child(even) td {
+    background-color: #fdf0d3;
+}
+
+/* row lights up when mouse is on it */
+tr:hover td {
+    background-color: #ffe29a;
+}
+
+/* Rank column: make it bold and centred */
+td:first-child,
+th:first-child {
+    text-align: center;
+    font-weight: 600;
+    width: 70px;
+}
+
+/* Orange and bigger for the #1 row */
+tbody tr:first-child td:first-child {
+    color: var(--saffron);
+    font-size: 1.3rem;
+}
+
+/* Scroll sideways on small screens instead of breaking the page */
+.table-wrap {
+    overflow-x: auto;
+}
+
+/* Poster images in the table */
+.poster {
+    display: block;
+    width: 70px;
+    height: auto;
+    border-radius: 6px;
+    border: 2px solid var(--gold);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s;
+}
+
+.poster:hover {
+    transform: scale(1.12);
+}
+
+/* Movie name links */
+.movie-link {
+    color: var(--maroon);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.movie-link:hover {
+    color: var(--saffron);
+    text-decoration: underline;
+}
+
+/* IMDb rating badge */
+.rating {
+    display: inline-block;
+    padding: 3px 10px;
+    background-color: var(--maroon);
+    color: var(--gold);
+    border-radius: 20px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Keep table cells vertically centred (poster is tall) */
+td {
+    vertical-align: middle;
+}
+
+/* ---------- Forms: GRID layout ---------- */
+form {
+    display: grid;
+    grid-template-columns: 1fr;   /* one column: label, input, label, input... */
+    gap: 8px;
+    margin-top: 20px;
+}
+
+label {
+    font-weight: 600;
+    color: var(--maroon);
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 1rem;
+    border: 2px solid #d9bd85;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* glow when the user clicks inside a box */
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--saffron);
+    box-shadow: 0 0 8px rgba(255, 122, 26, 0.5);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Submit button */
+input[type="submit"] {
+    margin-top: 20px;
+    padding: 14px;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #000;
+    background: linear-gradient(135deg, var(--gold), var(--saffron));
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+input[type="submit"]:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 16px rgba(255, 122, 26, 0.5);
+}
+
+/* ---------- Make keyboard focus visible ---------- */
+a:focus-visible,
+input[type="submit"]:focus-visible {
+    outline: 3px solid var(--saffron);
+    outline-offset: 3px;
+}
+
+/* ---------- Responsive: tablets and bigger screens ---------- */
+@media (min-width: 700px) {
+    /* on wider screens the form becomes 2 columns:
+       labels on the left, boxes on the right */
+    form {
+        grid-template-columns: 200px 1fr;
+        align-items: start;
+        gap: 18px 15px;
+    }
+
+    label {
+        margin-top: 12px;
+    }
+
+    /* the button spans both columns */
+    input[type="submit"] {
+        grid-column: 1 / -1;
+        justify-self: start;
+        padding: 14px 40px;
+    }
+}
+
+/* ---------- Responsive: phones ---------- */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .container {
+        padding: 22px 18px;
+        margin: 25px auto;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    nav a {
+        padding: 6px 14px;
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .poster {
+        width: 50px;
+    }
+}
